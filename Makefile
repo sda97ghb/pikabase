@@ -1,7 +1,7 @@
 requirements:
 	bash -c 'source venv/bin/activate; pip freeze > requirements.txt;'
 
-install:
+up:
 	docker-compose -p pikabase -f docker/docker-compose.yml build
 	docker-compose -p pikabase -f docker/docker-compose.yml up -d
 
@@ -23,3 +23,8 @@ delete: down destroy_data
 
 migrate:
 	docker exec -it pikabase-app python manage.py migrate
+
+makemigrations:
+	bash -c 'source venv/bin/activate; for i in $$(cat secrets/pikabase-app.env); do export $$i; done; python manage.py makemigrations'
+
+install: up migrate
