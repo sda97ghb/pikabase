@@ -1,0 +1,5 @@
+.idea
+secrets
+
+# Project exclude paths
+/venv/

@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  pikabase-app:
+    container_name: pikabase-app
+    build:
+      context: ..
+      dockerfile: docker/pikabase-app.Dockerfile
+    image: pikabase-app
+    env_file: ../secrets/pikabase-app.env
+    networks:
+      - primary
+    ports:
+      - 8080:8080
+    depends_on:
+      - pikabase-db
+
+  pikabase-db:
+    container_name: pikabase-db
+    image: postgres:10-alpine
+    env_file: ../secrets/pikabase-db.env
+    networks:
+      - primary
+    volumes:
+      - ../data/pikabase-db:/var/lib/postgresql/data
+
+networks:
+  primary:
+    driver: bridge
