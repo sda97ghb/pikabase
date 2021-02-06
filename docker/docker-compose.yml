@@ -8,6 +8,7 @@ services:
       dockerfile: docker/pikabase-app.Dockerfile
     image: pikabase-app
     env_file: ../secrets/pikabase-app.env
+    restart: unless-stopped
     networks:
       - primary
     ports:
@@ -19,6 +20,7 @@ services:
     container_name: pikabase-db
     image: postgres:10-alpine
     env_file: ../secrets/pikabase-db.env
+    restart: unless-stopped
     networks:
       - primary
     volumes:
