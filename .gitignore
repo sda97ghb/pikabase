@@ -1,5 +1,4 @@
 .idea
 secrets
-
-# Project exclude paths
+data
 /venv/

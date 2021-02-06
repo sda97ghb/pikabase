@@ -5,6 +5,7 @@ SECRET_KEY = decouple.config("SECRET_KEY")
 DEBUG = decouple.config("DEBUG", cast=bool, default=False)
 ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
+    "django_dramatiq",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -72,3 +73,23 @@ USE_L10N = True
 USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static"
+RABBITMQ_HOST = decouple.config("RABBITMQ_HOST", "rabbitmq")
+RABBITMQ_PORT = decouple.config("RABBITMQ_PORT", "5672")
+RABBITMQ_USER = decouple.config("RABBITMQ_USER")
+RABBITMQ_PASSWORD = decouple.config("RABBITMQ_PASSWORD")
+DRAMATIQ_BROKER = {
+    "BROKER": "dramatiq.brokers.rabbitmq.RabbitmqBroker",
+    "OPTIONS": {
+        "url": f"amqp://{RABBITMQ_USER}:{RABBITMQ_PASSWORD}@{RABBITMQ_HOST}:{RABBITMQ_PORT}",
+    },
+    "MIDDLEWARE": [
+        "dramatiq.middleware.Prometheus",
+        "dramatiq.middleware.AgeLimit",
+        "dramatiq.middleware.TimeLimit",
+        "dramatiq.middleware.Callbacks",
+        "dramatiq.middleware.Retries",
+        "django_dramatiq.middleware.DbConnectionsMiddleware",
+        "django_dramatiq.middleware.AdminMiddleware",
+    ],
+}
+DRAMATIQ_TASKS_DATABASE = "default"

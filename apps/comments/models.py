@@ -1,7 +1,4 @@
 from django.db import models
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
@@ -39,12 +36,16 @@ class CommentsTask(models.Model):
         help_text=_("Current status"),
         choices=StatusChoices.choices,
     )
+    status_message = models.TextField(
+        verbose_name=_("Status message"),
+        help_text=_("Status message such as error description"),
+    )
 
+    @property
+    def is_finished(self):
+        return self.status == StatusChoices.COMPLETED.value or StatusChoices.ERROR.value
 
-@receiver(pre_save, sender=CommentsTask)
-def set_comments_task_created_at(sender, **kwargs):
-    instance = kwargs.get("instance")
-    if not instance.created_at:
-        instance.created_at = timezone.now()
-    if not instance.status:
-        instance.status = StatusChoices.PENDING.value
+    def __str__(self):
+        return f"CommentsTask #{self.pk}: {self.status} {self.url} " \
+               f"{self.created_at} {self.fetched_at} {self.finished_at}: " \
+               f"{self.status_message}"

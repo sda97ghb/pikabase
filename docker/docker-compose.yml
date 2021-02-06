@@ -26,6 +26,16 @@ services:
     volumes:
       - ../data/pikabase-db:/var/lib/postgresql/data
 
+  rabbitmq:
+    container_name: rabbitmq
+    image: library/rabbitmq:3.8-management-alpine
+    env_file: ../secrets/rabbitmq.env
+    restart: unless-stopped
+    networks:
+      - primary
+    volumes:
+      - ../data/rabbitmq:/var/lib/rabbitmq
+
 networks:
   primary:
     driver: bridge
