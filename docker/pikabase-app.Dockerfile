@@ -5,6 +5,7 @@ CMD python run.py
 COPY manage.py manage.py
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+COPY pikabu pikabu
 COPY run.py run.py
 COPY project project
 COPY apps apps

@@ -1,5 +1,8 @@
 argh==0.26.2
 asgiref==3.3.1
+beautifulsoup4==4.9.3
+certifi==2020.12.5
+chardet==4.0.0
 Django==3.1.6
 django-dramatiq==0.9.1
 djangorestframework==3.12.2
@@ -7,6 +10,7 @@ dramatiq==1.10.0
 gevent==21.1.2
 greenlet==1.0.0
 gunicorn==20.0.4
+idna==2.10
 pathlib==1.0.1
 pathtools==0.1.2
 pika==1.2.0
@@ -15,7 +19,10 @@ psycopg2-binary==2.8.6
 python-decouple==3.4
 pytz==2021.1
 PyYAML==5.4.1
+requests==2.25.1
+soupsieve==2.2
 sqlparse==0.4.1
+urllib3==1.26.3
 watchdog==0.8.3
 watchdog-gevent==0.1.0
 whitenoise==5.2.0
