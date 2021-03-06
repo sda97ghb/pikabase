@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "apps.comments.apps.CommentsConfig",
+    "apps.pikabu_users.apps.PikabuUsersConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

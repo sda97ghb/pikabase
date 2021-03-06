@@ -49,3 +49,8 @@ class CommentsTask(models.Model):
         return f"CommentsTask #{self.pk}: {self.status} {self.url} " \
                f"{self.created_at} {self.fetched_at} {self.finished_at}: " \
                f"{self.status_message}"
+
+    def __repr__(self):
+        return f"CommentsTask #{self.pk}: {self.status} {self.url} " \
+               f"{self.created_at} {self.fetched_at} {self.finished_at}: " \
+               f"{self.status_message}"
