@@ -96,3 +96,7 @@ DRAMATIQ_BROKER = {
     ],
 }
 DRAMATIQ_TASKS_DATABASE = "default"
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
