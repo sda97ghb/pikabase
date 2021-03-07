@@ -2,12 +2,14 @@ import datetime
 import json
 import logging
 from dataclasses import dataclass
-from typing import Generator
+from typing import Generator, Optional
 
 from bs4 import BeautifulSoup
 
 from pikabu.api.adapters import get_story_comments
 from pikabu.utils import story_id_from_url
+
+__all__ = ["Comment", "CommentJSONEncoder", "story_comments"]
 
 log = logging.getLogger(__name__)
 
@@ -15,7 +17,7 @@ log = logging.getLogger(__name__)
 @dataclass
 class Comment:
     id: int
-    parent_id: int
+    parent_id: Optional[int]
     username: str
     text: str
     date: datetime.datetime
