@@ -40,5 +40,8 @@ docker_hoster_run:
 docker_hoster_stop:
 	docker stop docker-hoster
 
+black:
+	black apps/ project/ --exclude '.*migrations.*'
+
 sleep_10_sec:
 	sleep 10
