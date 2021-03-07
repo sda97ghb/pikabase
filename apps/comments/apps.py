@@ -7,4 +7,5 @@ class CommentsConfig(AppConfig):
     def ready(self):
         # Connect signals
         import apps.comments.signals
+
         type(apps.comments.signals)

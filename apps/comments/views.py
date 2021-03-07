@@ -20,3 +20,14 @@ class CommentsTaskSerializer(ModelSerializer):
 class CommentsTaskViewSet(ModelViewSet):
     queryset = models.CommentsTask.objects.all()
     serializer_class = CommentsTaskSerializer
+
+
+class CommentSerializer(ModelSerializer):
+    class Meta:
+        model = models.Comment
+        fields = "__all__"
+
+
+class CommentViewSet(ModelViewSet):
+    queryset = models.Comment.objects.all()
+    serializer_class = CommentSerializer
